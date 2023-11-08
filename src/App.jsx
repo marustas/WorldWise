@@ -1,8 +1,18 @@
 import "./App.css";
-
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Product from "./pages/Pricing";
+import Homepage from "./pages/Homepage";
+import Pricing from "./pages/Pricing";
 const App = () => {
-  const a = 15;
-  return <div>WorldWise</div>;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="product" element={<Product />} />
+        <Route path="pricing" element={<Pricing />} />
+      </Routes>
+    </BrowserRouter>
+  );
 };
 
 export default App;
