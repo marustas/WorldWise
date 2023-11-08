@@ -1,10 +1,10 @@
 import AppNav from "../components/AppNav";
+import SideBar from "../components/SideBar";
 
 const AppLayout = () => {
   return (
     <div>
-      <AppNav />
-      <h1>App Layout</h1>
+      <SideBar />
     </div>
   );
 };
