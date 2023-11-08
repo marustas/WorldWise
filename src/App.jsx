@@ -1,11 +1,12 @@
-import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Product from "./pages/Product";
 import Homepage from "./pages/Homepage";
+import Product from "./pages/Product";
 import Pricing from "./pages/Pricing";
+import Login from "./pages//Login";
 import PageNotFound from "./pages/PageNotFound";
 import AppLayout from "./pages/AppLayout";
-import Login from "./pages//Login";
+import "./App.css";
+
 const App = () => {
   return (
     <BrowserRouter>
