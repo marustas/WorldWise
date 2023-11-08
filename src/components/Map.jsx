@@ -1,5 +1,6 @@
+import { mapContainer } from "./Map.module.css";
 const Map = () => {
-  return <div></div>;
+  return <div className={mapContainer}>Map</div>;
 };
 
 export default Map;
