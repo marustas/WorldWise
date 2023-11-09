@@ -9,6 +9,7 @@ import PageNotFound from "./pages/PageNotFound";
 import AppLayout from "./pages/AppLayout";
 import CityList from "./components/CityList";
 import CountryList from "./components/CountryList";
+import City from "./components/City";
 import "./App.css";
 
 const App = () => {
@@ -43,6 +44,7 @@ const App = () => {
             index
             element={<CityList isLoading={isLoading} cities={cities} />}
           />
+          <Route path="cities/:id" element={<City />} />
           <Route
             path="cities"
             element={<CityList isLoading={isLoading} cities={cities} />}
