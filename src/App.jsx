@@ -10,12 +10,13 @@ import CityList from "./components/CityList";
 import { useEffect, useState } from "react";
 
 const App = () => {
-  const [cities, setCities] = useState({});
-  const [isLOading, setIsLoading] = useState(true);
-  const citiesUrl = `http://localhost:8000`;
+  const [cities, setCities] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const citiesUrl = "http://localhost:8000";
   useEffect(function () {
     async function fetchCities() {
       try {
+        setIsLoading(true);
         const res = await fetch(`${citiesUrl}/cities`);
         const data = await res.json();
         setCities(data);
@@ -36,8 +37,14 @@ const App = () => {
         <Route path="login" element={<Login />} />
         <Route path="*" element={<PageNotFound />} />
         <Route path="app" element={<AppLayout />}>
-          <Route index element={<CityList />} />
-          <Route path="cities" element={<CityList />} />
+          <Route
+            index
+            element={<CityList isLoading={isLoading} cities={cities} />}
+          />
+          <Route
+            path="cities"
+            element={<CityList isLoading={isLoading} cities={cities} />}
+          />
           <Route path="countries" element={<p>List of countries</p>} />
           <Route path="form" element={<p>Form</p>} />
         </Route>
