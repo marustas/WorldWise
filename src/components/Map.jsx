@@ -1,11 +1,17 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { mapContainer, map } from "./Map.module.css";
-import { MapContainer, Popup, TileLayer, Marker, useMap } from "react-leaflet";
+import {
+  MapContainer,
+  Popup,
+  TileLayer,
+  Marker,
+  useMap,
+  useMapEvents,
+} from "react-leaflet";
 import { useState, useEffect } from "react";
 import { useCities } from "../context/CitiesContext";
 
 const Map = () => {
-  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const { cities } = useCities();
   const lat = searchParams.get("lat");
@@ -28,6 +34,7 @@ const Map = () => {
         center={position}
         zoom={6}
         scrollWheelZoom={true}
+        onClick
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -45,6 +52,7 @@ const Map = () => {
           </Marker>
         ))}
         <ChangeCenter position={position} />
+        <DetectClick />
       </MapContainer>
     </div>
   );
@@ -55,5 +63,10 @@ function ChangeCenter({ position }) {
   map.setView(position);
   return null;
 }
-
+function DetectClick({}) {
+  const navigate = useNavigate();
+  useMapEvents({
+    click: (e) => navigate(`form?lat=${e.latlng.lat}&lng=${e.latlng.lat}`),
+  });
+}
 export default Map;
