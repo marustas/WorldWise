@@ -12,6 +12,7 @@ import { useState, useEffect, useContext } from "react";
 import { useCities } from "../context/CitiesContext";
 import { useGeolocation } from "../hooks/useGeolocation";
 import Button from "./Button";
+
 const Map = () => {
   const [searchParams] = useSearchParams();
   const { cities } = useCities();
@@ -44,9 +45,11 @@ const Map = () => {
 
   return (
     <div className={mapContainer}>
-      <Button type="position" onClick={getPosition}>
-        {isLoadingPosition ? "Loading..." : "Use your position"}
-      </Button>
+      {!geoPosition && (
+        <Button type="position" onClick={getPosition}>
+          {isLoadingPosition ? "Loading..." : "Use your position"}
+        </Button>
+      )}
       <MapContainer
         className={map}
         center={position}
