@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Button from "./Button";
 import styles from "./Form.module.css";
 import { useNavigate } from "react-router-dom";
@@ -7,6 +7,7 @@ import Message from "./Message";
 import Spinner from "./Spinner";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useCities } from "../context/CitiesContext";
 
 export function convertToEmoji(countryCode) {
   const codePoints = countryCode
@@ -27,6 +28,7 @@ function Form() {
   const [isLoadingCity, setIsLoadingCity] = useState(false);
   const [emoji, setEmoji] = useState("");
   const [cityError, setCityError] = useState("");
+  const { createCity } = useCities();
 
   useEffect(
     function () {
@@ -72,6 +74,20 @@ function Form() {
 
   function handleSubmit(e) {
     e.preventDefault();
+
+    if (!cityName || !date) {
+      return;
+    } else {
+      const newCity = {
+        cityName,
+        country,
+        emoji,
+        date,
+        notes,
+        position: { lat, lng },
+      };
+      createCity(newCity);
+    }
   }
 
   return (

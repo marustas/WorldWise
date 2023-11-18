@@ -35,6 +35,18 @@
         "lng": 13.376933665713324
       },
       "id": 98443197
+    },
+    {
+      "cityName": "Enskede-Arsta-Vantor city district",
+      "country": "Sweden",
+      "emoji": "🇸🇪",
+      "date": "2023-11-18T11:41:47.543Z",
+      "notes": "it was alright.",
+      "position": {
+        "lat": "59.28833169203345",
+        "lng": "18.061523437500004"
+      },
+      "id": 98443198
     }
   ]
 }
