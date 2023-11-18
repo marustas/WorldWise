@@ -28,7 +28,7 @@ function Form() {
   const [isLoadingCity, setIsLoadingCity] = useState(false);
   const [emoji, setEmoji] = useState("");
   const [cityError, setCityError] = useState("");
-  const { createCity } = useCities();
+  const { createCity, isLoading } = useCities();
 
   useEffect(
     function () {
@@ -72,7 +72,7 @@ function Form() {
     return <Message message="Start by clicking somewhere on the map" />;
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
 
     if (!cityName || !date) {
@@ -86,12 +86,16 @@ function Form() {
         notes,
         position: { lat, lng },
       };
-      createCity(newCity);
+      await createCity(newCity);
+      navigate("/app/cities");
     }
   }
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
+    <form
+      className={`${styles.form} ${isLoading ? styles.loading : ""}`}
+      onSubmit={handleSubmit}
+    >
       <div className={styles.row}>
         <label htmlFor="cityName">City name</label>
         <input

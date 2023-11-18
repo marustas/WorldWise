@@ -47,6 +47,42 @@
         "lng": "18.061523437500004"
       },
       "id": 98443198
+    },
+    {
+      "cityName": "Helechosa de los Montes",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2023-11-18T11:46:59.677Z",
+      "notes": "",
+      "position": {
+        "lat": "39.29179704377487",
+        "lng": "-4.921875000000001"
+      },
+      "id": 98443199
+    },
+    {
+      "cityName": "Chagarcia Medianero",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2023-11-18T11:47:46.259Z",
+      "notes": "",
+      "position": {
+        "lat": "40.6723059714534",
+        "lng": "-5.383300781250001"
+      },
+      "id": 98443200
+    },
+    {
+      "cityName": "Arezzo",
+      "country": "Italy",
+      "emoji": "🇮🇹",
+      "date": "2023-11-18T11:49:18.425Z",
+      "notes": "",
+      "position": {
+        "lat": "43.39706523932025",
+        "lng": "12.01904296875"
+      },
+      "id": 98443201
     }
   ]
 }
