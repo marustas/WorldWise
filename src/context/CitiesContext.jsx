@@ -1,10 +1,4 @@
-import {
-  createContext,
-  useState,
-  useEffect,
-  useContext,
-  useReducer,
-} from "react";
+import { createContext, useEffect, useContext, useReducer } from "react";
 
 const CitiesContext = createContext();
 
@@ -39,10 +33,16 @@ function reducer(state, action) {
         ...state,
         isLoading: false,
         cities: state.cities.filter((city) => city.id !== payload),
+        currentCity: {},
       };
 
     case "city/created":
-      return { ...state, isLoading: false, cities: [...state.cities, payload] };
+      return {
+        ...state,
+        currentCity: payload,
+        isLoading: false,
+        cities: [...state.cities, payload],
+      };
 
     case "rejected":
       return { ...state, isLoading: false, error: payload };
@@ -57,9 +57,6 @@ const CitiesProvider = ({ children }) => {
     reducer,
     initialState
   );
-  // const [cities, setCities] = useState([]);
-  // const [isLoading, setIsLoading] = useState(false);
-  // const [currentCity, setCurrentCity] = useState({});
 
   const citiesUrl = "http://localhost:8000";
 
@@ -81,6 +78,10 @@ const CitiesProvider = ({ children }) => {
   }, []);
 
   async function getCity(cityID) {
+    if (Number(cityID) === currentCity.id) {
+      return;
+    }
+
     try {
       dispatch({ type: "loading" });
       const res = await fetch(`${citiesUrl}/cities/${cityID}`);
@@ -136,6 +137,7 @@ const CitiesProvider = ({ children }) => {
         getCity,
         createCity,
         deleteCity,
+        error,
       }}
     >
       {children}
