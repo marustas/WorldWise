@@ -1,18 +1,6 @@
 {
   "cities": [
     {
-      "cityName": "Lisbon",
-      "country": "Portugal",
-      "emoji": "🇵🇹",
-      "date": "2027-10-31T15:59:59.138Z",
-      "notes": "My favorite city so far!",
-      "position": {
-        "lat": 38.727881642324164,
-        "lng": -9.140900099907554
-      },
-      "id": 73930385
-    },
-    {
       "cityName": "Madrid",
       "country": "Spain",
       "emoji": "🇪🇸",
@@ -35,42 +23,6 @@
         "lng": 13.376933665713324
       },
       "id": 98443197
-    },
-    {
-      "cityName": "Enskede-Arsta-Vantor city district",
-      "country": "Sweden",
-      "emoji": "🇸🇪",
-      "date": "2023-11-18T11:41:47.543Z",
-      "notes": "it was alright.",
-      "position": {
-        "lat": "59.28833169203345",
-        "lng": "18.061523437500004"
-      },
-      "id": 98443198
-    },
-    {
-      "cityName": "Helechosa de los Montes",
-      "country": "Spain",
-      "emoji": "🇪🇸",
-      "date": "2023-11-18T11:46:59.677Z",
-      "notes": "",
-      "position": {
-        "lat": "39.29179704377487",
-        "lng": "-4.921875000000001"
-      },
-      "id": 98443199
-    },
-    {
-      "cityName": "Chagarcia Medianero",
-      "country": "Spain",
-      "emoji": "🇪🇸",
-      "date": "2023-11-18T11:47:46.259Z",
-      "notes": "",
-      "position": {
-        "lat": "40.6723059714534",
-        "lng": "-5.383300781250001"
-      },
-      "id": 98443200
     },
     {
       "cityName": "Arezzo",
