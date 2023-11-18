@@ -3,6 +3,8 @@ import Button from "./Button";
 import styles from "./Form.module.css";
 import { useNavigate } from "react-router-dom";
 import { useUrlPosition } from "../hooks/useUrlPositon";
+import Message from "./Message";
+import Spinner from "./Spinner";
 
 export function convertToEmoji(countryCode) {
   const codePoints = countryCode
@@ -21,19 +23,27 @@ function Form() {
   const [notes, setNotes] = useState("");
   const [lat, lng] = useUrlPosition();
   const [isLoadingCity, setIsLoadingCity] = useState(false);
+  const [emoji, setEmoji] = useState("");
+  const [cityError, setCityError] = useState("");
 
   useEffect(
     function () {
       async function fetchCityData() {
         try {
           setIsLoadingCity(true);
+          setCityError("");
           const response = await fetch(
             `${BASE_URL}?latitude=${lat}&longitude=${lng}`
           );
           const data = await response.json();
+          if (!data.countryCode) {
+            throw new Error("This is not a city, click somewhere else");
+          }
           setCityName(data.locality || data.city || "");
           setCountry(data.countryName);
+          setEmoji(convertToEmoji(data.countryCode));
         } catch (error) {
+          setCityError(error.message);
         } finally {
           setIsLoadingCity(false);
         }
@@ -42,6 +52,14 @@ function Form() {
     },
     [lat, lng]
   );
+
+  if (isLoadingCity) {
+    return <Spinner />;
+  }
+
+  if (cityError) {
+    return <Message message={cityError} />;
+  }
 
   return (
     <form className={styles.form}>
@@ -52,7 +70,7 @@ function Form() {
           onChange={(e) => setCityName(e.target.value)}
           value={cityName}
         />
-        {/* <span className={styles.flag}>{emoji}</span> */}
+        <span className={styles.flag}>{emoji}</span>
       </div>
 
       <div className={styles.row}>
